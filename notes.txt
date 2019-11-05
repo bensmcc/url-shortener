@@ -1,0 +1,27 @@
+# Notes
+
+This is a .NET Core 3.0 MVC solution. It contains a single page
+with a form that posts back to the smae URL. A random token is generated
+based on the URL and that is stored in Redis. 
+
+When a user goes to a url that is not the home page (localhost:5000/bla123), 
+it tries to pull the (key, value) from redis and if it's not found, gives the 
+user a message. Otherwise does a 301 redirect to that url. 
+
+This solution is setup for easy testing due to important parts (like the redis client)
+being injected into everything that's dependent on it so that in testing
+those dependencies can be fairly easily mocked.
+
+If time had allowed:
+ - More testing of various happy and sad paths
+ - Checking if a URL already exists in Redis before generating a token
+for it. This could potentially be an easy implementation but would double
+the amount of storage used by Redis.
+
+The server will be accessible on port 5000.
+
+Nuget packages used:
+
+Moq (https://github.com/moq/moq4) - for creating mocks of interfaces for testing
+XUnit (https://xunit.net/) - for unit testing
+StackExchange.Redis (https://stackexchange.github.io/StackExchange.Redis/) - for connecting to redis
