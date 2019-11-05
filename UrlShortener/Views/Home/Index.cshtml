@@ -1,0 +1,30 @@
+﻿@model AddRedirectModel
+
+@{
+    ViewData["Title"] = "URL Shortener";
+}
+
+<h1 class="text-center">Ben's really great URL Shortener!</h1>
+
+
+@if (!string.IsNullOrWhiteSpace(Model.ShortenedUrl))
+{
+    <h3 class="text-center">
+        Your short url is <a href="@Model.ShortenedUrl" target="_blank">@Model.ShortenedUrl</a>
+    </h3>
+}
+
+@if (!string.IsNullOrWhiteSpace(Model.Error))
+{
+    <h3 class="error text-center">@Model.Error</h3>
+}
+
+
+<form asp-controller="Home" asp-action="AddRedirect" method="post">
+    <div class="form-group">
+        <input type="text" class="form-control" asp-for="@Model.Url" aria-describedby="url" placeholder="Enter a url. Example: http://google.com" />
+    </div>
+    <button type="submit" class="btn btn-primary">Shorten my url!</button>
+</form>
+
+
