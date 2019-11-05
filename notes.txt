@@ -13,14 +13,17 @@ being injected into everything that's dependent on it so that in testing
 those dependencies can be fairly easily mocked.
 
 If time had allowed:
- - More testing of various happy and sad paths
- - Checking if a URL already exists in Redis before generating a token
-for it. This could potentially be an easy implementation but would double
-the amount of storage used by Redis.
+    - More testing of various happy and sad paths
+    - Checking if a URL already exists in Redis before generating a token
+    for it. This could potentially be an easy implementation but would double
+    the amount of storage used by Redis. Two users shortening "http://google.com" 
+    would get the same token.
+    - Make a real front end for this since there essentially isn't one. Only used the 
+    some very basic bootstrap classes for this.    
 
 The server will be accessible on port 5000.
 
-Nuget packages used:
+NuGet packages used:
 
 Moq (https://github.com/moq/moq4) - for creating mocks of interfaces for testing
 XUnit (https://xunit.net/) - for unit testing
